@@ -17,9 +17,7 @@ Product OS supports multiple projects. Each project has:
 
 ### Project Context Files
 
-Located at:
-- `projects/keylead/CONTEXT.md` — Keylead context
-- `projects/nairon-slackapp/CONTEXT.md` — Nairon Slack App context
+Located at `projects/[project-id]/CONTEXT.md` for each project.
 
 When working on a feature, always read the appropriate CONTEXT.md for:
 - Tech stack and codebase structure
@@ -60,29 +58,25 @@ PROBLEM SPACE                    SOLUTION SPACE
 ```
 product-os/
 ├── projects/
-│   ├── projects.json           # List of configured projects
-│   ├── keylead/
-│   │   └── CONTEXT.md          # Keylead project context
-│   └── nairon-slackapp/
-│       ├── CONTEXT.md          # Nairon project context
-│       └── sprints/            # Nairon sprint files
+│   ├── projects.json           # List of configured projects (user-specific, gitignored)
+│   ├── projects.example.json   # Template project config
+│   ├── example/                # Example project template
+│   │   └── CONTEXT.md
+│   └── [your-project]/
+│       ├── CONTEXT.md          # Project context
+│       └── sprints/
 │           └── YYYY-WXX/
 │               └── [feature]/
-│
-├── keylead/                    # Keylead repo (sprints are here)
-│   └── sprints/
-│       └── YYYY-WXX/
-│           └── [feature]/
-│               ├── project.json
-│               ├── inputs-summary.md
-│               ├── discover-output.md
-│               ├── problem-statement.md
-│               ├── develop-output.md
-│               ├── prd.md
-│               ├── qa.md
-│               ├── linear-tickets.md
-│               ├── loom-outline.md
-│               └── handoff-complete.md
+│                   ├── project.json
+│                   ├── inputs-summary.md
+│                   ├── discover-output.md
+│                   ├── problem-statement.md
+│                   ├── develop-output.md
+│                   ├── prd.md
+│                   ├── qa.md
+│                   ├── linear-tickets.md
+│                   ├── loom-outline.md
+│                   └── handoff-complete.md
 │
 ├── src/                        # Product OS UI
 ├── workflow/                   # Workflow documentation

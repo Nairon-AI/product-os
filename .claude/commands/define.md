@@ -1,11 +1,20 @@
 ---
 description: Narrow down to one clear problem statement (converge)
-allowed-tools: Read, Write, Bash, Glob, Grep, Edit
+allowed-tools: Read, Write, Bash, Glob, Grep, Edit, AskUserQuestion
 ---
 
 # /define - Problem Space (Converge)
 
 You are helping converge on ONE clear problem statement.
+
+## IMPORTANT: Use AskUserQuestion for All User Input
+
+**Always use the `AskUserQuestion` tool** to gather user input instead of asking questions in chat. This gives the user a structured UI with clickable options, which is faster and produces better responses.
+
+- Use `options` to present choices the user can click on
+- Use `multiSelect: true` when multiple answers apply
+- Use the `markdown` preview field when comparing problem statement options
+- Batch related questions (up to 4) into a single AskUserQuestion call
 
 ## Prerequisites
 
@@ -24,25 +33,7 @@ After completing EACH step, append the output to `problem-statement.md` in the f
 
 Walk through these steps **one at a time**. This is about narrowing, not exploring.
 
-### Step 1: Review Discover
-
-Summarize the key findings from Discover:
-- Core desire
-- Key user insights
-- Main risks
-- Blind spots identified
-
-Confirm understanding before proceeding.
-
-**Write to `problem-statement.md`:**
-```markdown
-# Problem Statement
-
-## Review Discover
-[Summary of key findings from discover phase]
-```
-
-### Step 2: Synthesize
+### Step 1: Synthesize
 
 Group related findings:
 - "Here are the clusters I see: [list them]"
@@ -55,7 +46,7 @@ Group related findings:
 [Clusters and themes identified]
 ```
 
-### Step 3: Narrow Down
+### Step 2: Narrow Down
 
 Help use gut feel to reduce options:
 - "Based on everything, which problem is most critical to solve?"
@@ -68,7 +59,7 @@ Help use gut feel to reduce options:
 [Selected focus area and reasoning]
 ```
 
-### Step 4: Articulate
+### Step 3: Articulate
 
 Write one clear sentence defining the problem:
 - Propose: "Here's my attempt at the problem statement: [statement]"
@@ -85,7 +76,7 @@ Write one clear sentence defining the problem:
 **What We're NOT Solving:** [Explicit boundaries]
 ```
 
-### Step 5: Defend Check
+### Step 4: Defend Check
 
 Validate the statement:
 - "If the stakeholder asked 'why this problem and not the others?' — what would you say?"

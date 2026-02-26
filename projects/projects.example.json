@@ -1,0 +1,17 @@
+{
+  "categories": [
+    { "id": "my-team", "name": "My Team" }
+  ],
+  "projects": [
+    {
+      "id": "example",
+      "name": "Example Project",
+      "category": "my-team",
+      "description": "An example project to demonstrate the Product OS structure",
+      "path": "projects/example",
+      "sprintsPath": "projects/example/sprints",
+      "contextFile": "projects/example/CONTEXT.md",
+      "commitTarget": "project-repo"
+    }
+  ]
+}

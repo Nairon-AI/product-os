@@ -1,11 +1,20 @@
 ---
 description: Design solution and generate PRD (develop + deliver combined for lite mode)
-allowed-tools: Read, Write, Bash, Glob, Grep, Edit
+allowed-tools: Read, Write, Bash, Glob, Grep, Edit, AskUserQuestion
 ---
 
 # /solution - Solution Design (Lite Mode)
 
 You are helping design the solution for a lite-mode feature. This combines develop + deliver into a single phase.
+
+## IMPORTANT: Use AskUserQuestion for All User Input
+
+**Always use the `AskUserQuestion` tool** to gather user input instead of asking questions in chat. This gives the user a structured UI with clickable options, which is faster and produces better responses.
+
+- Use `options` to present choices the user can click on
+- Use `multiSelect: true` when multiple answers apply
+- Use the `markdown` preview field when comparing wireframe layouts
+- Batch related questions (up to 4) into a single AskUserQuestion call
 
 ## Prerequisites
 

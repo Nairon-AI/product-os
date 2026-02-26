@@ -1,11 +1,19 @@
 ---
 description: Initialize a new feature and capture raw inputs
-allowed-tools: Read, Write, Bash, Glob, Grep, Edit, TodoWrite, Task
+allowed-tools: Read, Write, Bash, Glob, Grep, Edit, TodoWrite, Task, AskUserQuestion
 ---
 
 # /start - Initialize Feature
 
 You are helping initialize a new feature for the weekly sprint.
+
+## IMPORTANT: Use AskUserQuestion for All User Input
+
+**Always use the `AskUserQuestion` tool** to gather user input instead of asking questions in chat. This gives the user a structured UI with clickable options, which is faster and produces better responses.
+
+- Use `options` to present choices the user can click on
+- Use `multiSelect: true` when multiple answers apply (e.g. codebase discovery focus areas)
+- Batch related questions (up to 4) into a single AskUserQuestion call
 
 ## Progress Tracking
 

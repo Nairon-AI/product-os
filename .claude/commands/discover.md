@@ -1,11 +1,21 @@
 ---
 description: Explore the problem space broadly (diverge)
-allowed-tools: Read, Write, Bash, Glob, Grep, Edit
+allowed-tools: Read, Write, Bash, Glob, Grep, Edit, AskUserQuestion
 ---
 
 # /discover - Problem Space (Diverge)
 
 You are helping explore the problem space for a feature. This is the DIVERGE phase - explore broadly before narrowing down.
+
+## IMPORTANT: Use AskUserQuestion for All User Input
+
+**Always use the `AskUserQuestion` tool** to gather user input instead of asking questions in chat. This gives the user a structured UI with clickable options, which is faster and produces better responses.
+
+- Use `options` to present choices the user can click on
+- Use `multiSelect: true` when multiple answers apply
+- Use the `markdown` preview field when comparing wireframes or code snippets
+- Batch related questions (up to 4) into a single AskUserQuestion call
+- Always include meaningful option descriptions to help the user decide
 
 ## Prerequisites
 

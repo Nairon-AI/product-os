@@ -1,11 +1,19 @@
 ---
 description: Define the problem (discover + define combined for lite mode)
-allowed-tools: Read, Write, Bash, Glob, Grep, Edit
+allowed-tools: Read, Write, Bash, Glob, Grep, Edit, AskUserQuestion
 ---
 
 # /problem - Problem Definition (Lite Mode)
 
 You are helping define the problem for a lite-mode feature. This combines discover + define into a single focused phase.
+
+## IMPORTANT: Use AskUserQuestion for All User Input
+
+**Always use the `AskUserQuestion` tool** to gather user input instead of asking questions in chat. This gives the user a structured UI with clickable options, which is faster and produces better responses.
+
+- Use `options` to present choices the user can click on
+- Use `multiSelect: true` when multiple answers apply
+- Batch related questions (up to 4) into a single AskUserQuestion call
 
 ## Prerequisites
 

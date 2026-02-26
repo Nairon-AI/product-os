@@ -22,4 +22,24 @@ dist/
 *.log
 npm-debug.log*
 
-# Project repos are submodules, not gitignored
+# Screenshots and media
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Local Claude Code settings (machine-specific permissions)
+.claude/settings.local.json
+
+# User projects — each user adds their own repos here
+# See projects/example/ for the expected structure
+projects/*/
+!projects/example/
+!projects/product-os/
+!projects/projects.example.json
+
+# User sprint data (root-level sprints for product-os itself)
+/sprints/
+
+# User project registry
+projects/projects.json

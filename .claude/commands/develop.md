@@ -1,11 +1,20 @@
 ---
 description: Explore solutions - UI flows, wireframes, edge cases (diverge)
-allowed-tools: Read, Write, Bash, Glob, Grep, Edit
+allowed-tools: Read, Write, Bash, Glob, Grep, Edit, AskUserQuestion
 ---
 
 # /develop - Solution Space (Diverge)
 
 You are helping explore solutions for the defined problem. This is DIVERGE - explore options before finalizing.
+
+## IMPORTANT: Use AskUserQuestion for All User Input
+
+**Always use the `AskUserQuestion` tool** to gather user input instead of asking questions in chat. This gives the user a structured UI with clickable options, which is faster and produces better responses.
+
+- Use `options` to present choices the user can click on
+- Use `multiSelect: true` when multiple answers apply (e.g. selecting in-scope flows)
+- Use the `markdown` preview field when comparing wireframe layouts or UI options
+- Batch related questions (up to 4) into a single AskUserQuestion call
 
 ## Prerequisites
 
@@ -31,19 +40,7 @@ After completing EACH step, append the output to `develop-output.md` in the feat
 
 Walk through these steps **one at a time**.
 
-### Step 1: Review Problem
-
-Show the problem statement. Confirm ready to explore solutions.
-
-**Write to `develop-output.md`:**
-```markdown
-# Develop Output
-
-## Review Problem
-[Problem statement and confirmation to proceed]
-```
-
-### Step 2: Brainstorm Flows
+### Step 1: Brainstorm Flows
 
 **DO NOT propose UI options yet.** First, brainstorm ALL possible user flows related to this feature.
 
@@ -64,7 +61,7 @@ Get confirmation before proceeding.
 [All flows identified, marked as in-scope or out-of-scope]
 ```
 
-### Step 3: UI Flow Questions
+### Step 2: UI Flow Questions
 
 **Still don't propose options.** Ask targeted questions about the in-scope flows:
 
@@ -75,7 +72,7 @@ Get confirmation before proceeding.
 
 Ask 3-5 questions at a time. Get answers before proceeding.
 
-### Step 4: Design Decisions
+### Step 3: Design Decisions
 
 Summarize all decisions made from the Q&A. Confirm before moving to wireframes.
 
@@ -85,7 +82,7 @@ Summarize all decisions made from the Q&A. Confirm before moving to wireframes.
 [Design decisions documented]
 ```
 
-### Step 5: Desktop Wireframe
+### Step 4: Desktop Wireframe
 
 NOW propose ASCII wireframes based on the decisions:
 
@@ -107,7 +104,7 @@ Ask: "Does this layout work? Anything to change?"
 [ASCII wireframe and explanation]
 ```
 
-### Step 6: Mobile Wireframe
+### Step 5: Mobile Wireframe
 
 **MOBILE IS NOT OPTIONAL.**
 
@@ -124,7 +121,7 @@ Ask: "Does this work for mobile users?"
 [ASCII wireframe for mobile]
 ```
 
-### Step 7: Edge Cases
+### Step 6: Edge Cases
 
 Based on the feature + project codebase, identify edge cases.
 
@@ -141,7 +138,7 @@ Get explicit decisions for each.
 [Edge cases identified with decisions]
 ```
 
-### Step 8: Codebase Risks
+### Step 7: Codebase Risks
 
 Analyze the project codebase:
 - What files/modules would this touch?
@@ -156,7 +153,7 @@ Add "Engineering Investigation Notes" for things engineers should check.
 [Technical considerations + investigation notes for engineers]
 ```
 
-### Step 9: Trade-offs
+### Step 8: Trade-offs
 
 List the trade-offs made and confirm they're acceptable.
 
@@ -166,7 +163,7 @@ List the trade-offs made and confirm they're acceptable.
 [Trade-offs accepted]
 ```
 
-### Step 10: Exit Check
+### Step 9: Exit Check
 
 Review everything:
 - "Do you have clear direction?"

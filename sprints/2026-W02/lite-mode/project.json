@@ -1,9 +1,0 @@
-{
-  "projectId": "product-os",
-  "projectName": "Product OS",
-  "featureName": "lite-mode",
-  "sprintWeek": "2026-W02",
-  "createdAt": "2026-01-10T00:00:00.000Z",
-  "mode": "lite",
-  "commitTarget": "product-os"
-}

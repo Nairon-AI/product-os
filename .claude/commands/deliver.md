@@ -1,11 +1,19 @@
 ---
 description: Generate PRD, QA checklist, Linear tickets, Loom outline (converge)
-allowed-tools: Read, Write, Bash, Glob, Grep, Edit
+allowed-tools: Read, Write, Bash, Glob, Grep, Edit, AskUserQuestion
 ---
 
 # /deliver - Solution Space (Converge)
 
 You are helping finalize and generate all handoff materials.
+
+## IMPORTANT: Use AskUserQuestion for All User Input
+
+**Always use the `AskUserQuestion` tool** to gather user input instead of asking questions in chat. This gives the user a structured UI with clickable options, which is faster and produces better responses.
+
+- Use `options` to present choices the user can click on
+- Use `multiSelect: true` when multiple answers apply (e.g. selecting deliverables)
+- Batch related questions (up to 4) into a single AskUserQuestion call
 
 ## Prerequisites
 
@@ -39,17 +47,7 @@ User can select multiple. PRD is always required.
 
 Store selections for later steps. For unselected items, create placeholder files with "**Status:** Skipped" at the end.
 
-### Step 2: Review All
-
-Summarize in conversation (NOT in the PRD file):
-- Problem statement
-- Chosen solution approach
-- Edge cases decided
-- Technical considerations
-
-Ask: "Any final changes before I generate the PRD?"
-
-### Step 3: Generate PRD
+### Step 2: Generate PRD
 
 Generate a comprehensive PRD. **Start directly with Summary — no "Review All" section in the PRD itself.**
 
@@ -117,7 +115,7 @@ Generate a comprehensive PRD. **Start directly with Summary — no "Review All" 
 
 Ask for feedback. Iterate if needed.
 
-### Step 4: Generate QA (if selected)
+### Step 3: Generate QA (if selected)
 
 **Skip if not selected in Step 1.**
 
@@ -154,7 +152,7 @@ Generate QA checklist.
 
 Ask for feedback.
 
-### Step 5: Generate Tickets (if selected)
+### Step 4: Generate Tickets (if selected)
 
 **Skip if not selected in Step 1.**
 
@@ -181,7 +179,7 @@ Break down into **4-5 Linear tickets maximum**. Keep them chunky, not granular.
 
 Ask for feedback.
 
-### Step 6: Generate Loom Outline (if selected)
+### Step 5: Generate Loom Outline (if selected)
 
 **Skip if not selected in Step 1.**
 
@@ -216,7 +214,7 @@ Generate a 5-minute video outline.
 **Cover:** [priorities]
 ```
 
-### Step 7: Create Skipped Placeholders
+### Step 6: Create Skipped Placeholders
 
 For any deliverables NOT selected in Step 1, create placeholder files:
 
@@ -228,7 +226,7 @@ For any deliverables NOT selected in Step 1, create placeholder files:
 
 This ensures the UI shows proper completion state.
 
-### Step 8: Package Check
+### Step 7: Package Check
 
 Verify all files exist (including skipped placeholders):
 - [ ] prd.md (with embedded wireframes)
