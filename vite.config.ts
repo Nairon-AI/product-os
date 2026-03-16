@@ -34,15 +34,11 @@ const PHASE_STEP_MARKERS: Record<string, { file: string; markers: string[] }> = 
   },
   define: {
     file: 'problem-statement.md',
-    markers: ['Review Discover', 'Synthesize', 'Narrow Down', 'Articulate', 'Defend Check']
+    markers: ['Synthesize', 'Narrow Down', 'Articulate', 'Defend Check']
   },
   develop: {
     file: 'develop-output.md',
-    markers: ['Review Problem', 'UI Flow', 'Desktop Wireframe', 'Mobile Wireframe', 'Edge Cases', 'Codebase Risks', 'Trade-offs', 'Exit Check']
-  },
-  deliver: {
-    file: 'prd.md',
-    markers: ['Review All', 'Finalize Approach', 'Generate PRD', 'Generate QA', 'Generate Tickets', 'Generate Loom', 'Package Check']
+    markers: ['UI Flow', 'Desktop Wireframe', 'Mobile Wireframe', 'Edge Cases', 'Codebase Risks', 'Trade-offs', 'Exit Check']
   }
 }
 

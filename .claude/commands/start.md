@@ -1,34 +1,33 @@
 ---
 description: Initialize a new feature and capture raw inputs
-allowed-tools: Read, Write, Bash, Glob, Grep, Edit, TodoWrite, Task, AskUserQuestion
+allowed-tools: Read, Write, Bash, Glob, Grep, Edit
 ---
 
 # /start - Initialize Feature
 
 You are helping initialize a new feature for the weekly sprint.
 
-## IMPORTANT: Use AskUserQuestion for All User Input
+## CRITICAL: How to Ask Questions
 
-**Always use the `AskUserQuestion` tool** to gather user input instead of asking questions in chat. This gives the user a structured UI with clickable options, which is faster and produces better responses.
+**Do NOT use AskUserQuestion** — it is broken within slash commands and auto-resolves before the user can answer.
 
-- Use `options` to present choices the user can click on
-- Use `multiSelect: true` when multiple answers apply (e.g. codebase discovery focus areas)
-- Batch related questions (up to 4) into a single AskUserQuestion call
+**Ask questions as formatted plain text and STOP.** Present options as a numbered list so the user can reply with a number or short answer. Format like this:
 
-## Progress Tracking
+```
+**Which project is this feature for?**
 
-**IMPORTANT:** Use the TodoWrite tool to track progress through this workflow.
+1. Project A — description
+2. Project B — description
+3. Project C — description
 
-At the start, create a todo list with ALL steps:
-1. Select Project
-2. Select Mode
-3. Create Directory
-4. Create project.json
-5. Codebase Discovery (both modes - scan product area)
-6. (For Comprehensive) Feature Type, Import Transcript, Import Slack, Import Feedback, Capture Design Links, Summarize Inputs
-7. (For Lite) Quick Summary
+(Reply with a number or name)
+```
 
-**Mark each step as completed IMMEDIATELY after finishing it.** This gives the user visual feedback of their progress. Mark the current step as `in_progress` when you start it.
+**NEVER guess, infer, or fabricate the user's answer.** Ask and STOP. Wait for their reply. Do not write to any files or proceed to the next step until you have a real response.
+
+**One step at a time.** Ask → wait → process → ask next. Never batch multiple steps.
+
+**Do NOT use TodoWrite, Task, or AskUserQuestion tools.** Progress is tracked by writing to output files, which the UI detects automatically.
 
 ## Your Task
 

@@ -36,18 +36,25 @@ export function PhasePanel({ phaseId, isComplete, files = {}, completedSteps = {
     : ['discover', 'define', 'develop']
 
   // A step is complete if:
-  // 1. For content marker phases: it's in the completedSteps array from backend
-  // 2. For file-based phases (start, handoff): its individual file deliverable exists
+  // 1. The entire phase is complete — all steps are done
+  // 2. For content marker phases: it's in the completedSteps array from backend
+  // 3. For file-based phases (start, deliver, handoff): its individual file deliverable exists
   const isStepComplete = (stepNumber: number) => {
-    // For phases with content markers, ONLY use the backend detection
+    // If the phase is complete, ALL steps are complete
+    if (isComplete) return true
+
+    // For phases with content markers, use the backend detection
     if (contentMarkerPhases.includes(phaseId)) {
       return phaseCompletedSteps.includes(stepNumber)
     }
 
-    // For start/handoff phases, check if each step's individual file exists
+    // For file-based phases, check if each step's deliverable file exists
     const step = phase.steps.find(s => s.number === stepNumber)
-    if (step && step.deliverable.endsWith('.md') && files[step.deliverable as keyof FeatureFiles]) {
-      return true
+    if (step) {
+      const deliverable = step.deliverable
+      if ((deliverable.endsWith('.md') || deliverable.endsWith('.json')) && files[deliverable as keyof FeatureFiles]) {
+        return true
+      }
     }
 
     return false

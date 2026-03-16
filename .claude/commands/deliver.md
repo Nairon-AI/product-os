@@ -7,13 +7,24 @@ allowed-tools: Read, Write, Bash, Glob, Grep, Edit, AskUserQuestion
 
 You are helping finalize and generate all handoff materials.
 
-## IMPORTANT: Use AskUserQuestion for All User Input
+## CRITICAL: How to Ask Questions
 
-**Always use the `AskUserQuestion` tool** to gather user input instead of asking questions in chat. This gives the user a structured UI with clickable options, which is faster and produces better responses.
+**Use `AskUserQuestion`** to gather user input with structured, clickable options.
 
 - Use `options` to present choices the user can click on
-- Use `multiSelect: true` when multiple answers apply (e.g. selecting deliverables)
+- Use `multiSelect: true` when multiple answers apply
 - Batch related questions (up to 4) into a single AskUserQuestion call
+
+**IMPORTANT: Before asking the first question, tell the user:**
+> "If you have **bypass permissions** enabled, please switch to **auto-approve** mode (shift+tab) — otherwise the questions will auto-resolve before you can answer."
+
+**AskUserQuestion must be the ONLY tool call in its message.** Never combine it with Write, Edit, Read, or any other tool in the same response.
+
+**If AskUserQuestion returns empty/blank answers:** The user's permissions mode is auto-resolving it. Tell them to press shift+tab to cycle to a different permissions mode, then re-ask the question.
+
+**NEVER guess or fabricate answers.** Every step that needs user input REQUIRES a real response before writing to files.
+
+**Do NOT use TodoWrite or Task tools.** Progress is tracked by writing to output files, which the UI detects automatically.
 
 ## Prerequisites
 
