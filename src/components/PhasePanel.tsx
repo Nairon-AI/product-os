@@ -14,8 +14,8 @@ interface PhasePanelProps {
 
 export function PhasePanel({ phaseId, isComplete, files = {}, completedSteps = {}, mode = 'comprehensive' }: PhasePanelProps) {
   const [copied, setCopied] = useState(false)
-  const phase = getPhaseForMode(phaseId, mode)
-  const nextPhase = getNextPhaseForMode(phaseId, mode)
+  const phase = getPhaseForMode(phaseId, mode, files)
+  const nextPhase = getNextPhaseForMode(phaseId, mode, files)
 
   if (!phase) return null
 
@@ -32,8 +32,8 @@ export function PhasePanel({ phaseId, isComplete, files = {}, completedSteps = {
   // For these, completion is determined by backend scanning for section headings with real content
   // Note: 'deliver' is excluded because it produces individual files (prd.md, qa.md, etc.) not sections
   const contentMarkerPhases = mode === 'lite'
-    ? ['start', 'problem', 'solution', 'handoff']
-    : ['discover', 'define', 'develop']
+    ? ['start', 'problem', 'solution', 'handoff', 'engineer', 'investigate']
+    : ['discover', 'define', 'develop', 'engineer', 'investigate']
 
   // A step is complete if:
   // 1. The entire phase is complete — all steps are done

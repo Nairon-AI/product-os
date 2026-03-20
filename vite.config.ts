@@ -39,6 +39,14 @@ const PHASE_STEP_MARKERS: Record<string, { file: string; markers: string[] }> = 
   develop: {
     file: 'develop-output.md',
     markers: ['UI Flow', 'Desktop Wireframe', 'Mobile Wireframe', 'Edge Cases', 'Codebase Risks', 'Trade-offs', 'Exit Check']
+  },
+  engineer: {
+    file: 'eng-context.md',
+    markers: ['Ingested From', 'Product Artifacts Ingested', 'Codebase Analysis', 'Technical Digest', 'Decision Points', 'Engineer Context']
+  },
+  investigate: {
+    file: 'eng-decisions.md',
+    markers: ['Investigation Order', 'Cross-Cutting Concerns', 'Build Sequence', 'Risks & Unknowns']
   }
 }
 
@@ -59,6 +67,14 @@ const LITE_PHASE_STEP_MARKERS: Record<string, { file: string; markers: string[] 
   handoff: {
     file: 'handoff-complete.md',
     markers: ['Deliverables Validated', 'Committed and Pushed', 'Implementation Prompt']
+  },
+  engineer: {
+    file: 'eng-context.md',
+    markers: ['Ingested From', 'Product Artifacts Ingested', 'Codebase Analysis', 'Technical Digest', 'Decision Points', 'Engineer Context']
+  },
+  investigate: {
+    file: 'eng-decisions.md',
+    markers: ['Investigation Order', 'Cross-Cutting Concerns', 'Build Sequence', 'Risks & Unknowns']
   }
 }
 

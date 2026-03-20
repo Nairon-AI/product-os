@@ -36,13 +36,13 @@ export function FeatureDetail() {
     )
   }
 
-  const phases = getPhasesForMode(feature.mode)
+  const phases = getPhasesForMode(feature.mode, feature.files)
 
   // Calculate completed phases - phases are complete when ALL steps are done
   // Content-marker phases (discover, define, develop, problem, solution) require all steps
   // File-based phases (start, deliver, handoff) check for specific files
   const isPhaseActuallyComplete = (phaseId: AnyPhaseId): boolean => {
-    const phaseData = getPhaseForMode(phaseId, feature.mode)
+    const phaseData = getPhaseForMode(phaseId, feature.mode, feature.files)
     if (!phaseData) return false
 
     // Helper to check if all steps are completed
@@ -72,10 +72,15 @@ export function FeatureDetail() {
       )
     }
 
-    // For content-marker phases (discover, define, develop, problem, solution),
+    // For content-marker phases (discover, define, develop, problem, solution, engineer, investigate),
     // require ALL steps to be completed
-    if (['discover', 'define', 'develop', 'problem', 'solution'].includes(phaseId)) {
+    if (['discover', 'define', 'develop', 'problem', 'solution', 'engineer', 'investigate'].includes(phaseId)) {
       return allStepsComplete()
+    }
+
+    // For Specify, check exit file
+    if (phaseId === 'specify') {
+      return !!feature.files['engineering-spec.md']
     }
 
     // Fallback: check all steps
@@ -118,6 +123,7 @@ export function FeatureDetail() {
             viewingPhase={displayPhase}
             onPhaseClick={setSelectedPhase}
             mode={feature.mode}
+            files={feature.files}
           />
         </div>
 

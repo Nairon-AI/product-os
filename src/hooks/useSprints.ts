@@ -5,6 +5,14 @@ const POLL_INTERVAL = 2000 // 2 seconds
 
 // Determine current phase based on which files exist
 function determineCurrentPhase(files: FeatureFiles, mode: FeatureMode = 'comprehensive'): AnyPhaseId {
+  // Engineering spec phases (only if eng flow has been started)
+  const hasEng = !!(files['eng-context.md'] || files['eng-decisions.md'] || files['engineering-spec.md'] || files['eng-handoff.md'])
+  if (hasEng) {
+    if (files['engineering-spec.md']) return 'specify'
+    if (files['eng-decisions.md']) return 'specify'
+    if (files['eng-context.md']) return 'investigate'
+  }
+
   if (mode === 'lite') {
     // Lite mode: start → problem → solution → handoff
     if (files['handoff-complete.md']) return 'handoff'
@@ -36,6 +44,19 @@ function determineCompletedPhases(
   mode: FeatureMode = 'comprehensive',
   completedSteps: Record<string, number[]> = {}
 ): AnyPhaseId[] {
+  // Engineering spec phases (only when eng flow has been started)
+  const hasEng = !!(files['eng-context.md'] || files['eng-decisions.md'] || files['engineering-spec.md'] || files['eng-handoff.md'])
+  const addEngPhases = (completed: AnyPhaseId[]) => {
+    if (!hasEng) return
+    if (files['eng-context.md']) completed.push('engineer')
+    // Investigate: check content markers
+    const investigateSteps = completedSteps['investigate'] || []
+    if (investigateSteps.length >= 4 && [1, 2, 3, 4].every(n => investigateSteps.includes(n))) {
+      completed.push('investigate')
+    }
+    if (files['engineering-spec.md']) completed.push('specify')
+  }
+
   if (mode === 'lite') {
     // Lite mode phases
     const completed: LitePhaseId[] = []
@@ -51,6 +72,7 @@ function determineCompletedPhases(
       completed.push('solution')
     }
     if (files['handoff-complete.md']) completed.push('handoff')
+    addEngPhases(completed)
     return completed
   }
 
@@ -77,6 +99,7 @@ function determineCompletedPhases(
     completed.push('deliver')
   }
   if (files['handoff-complete.md']) completed.push('handoff')
+  addEngPhases(completed)
   return completed
 }
 

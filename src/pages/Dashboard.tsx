@@ -10,8 +10,8 @@ import { cn } from '@/lib/utils'
 import type { Feature } from '@/types/sprint'
 
 function FeatureCard({ feature }: { feature: Feature }) {
-  const phases = getPhasesForMode(feature.mode)
-  const phase = getPhaseForMode(feature.currentPhase, feature.mode)
+  const phases = getPhasesForMode(feature.mode, feature.files)
+  const phase = getPhaseForMode(feature.currentPhase, feature.mode, feature.files)
   const completed = feature.completedPhases.length
   const total = phases.length
 

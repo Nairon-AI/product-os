@@ -3,8 +3,8 @@
  * Types for sprint tracking, features, and phases
  */
 
-export type PhaseId = 'start' | 'discover' | 'define' | 'develop' | 'deliver' | 'handoff'
-export type LitePhaseId = 'start' | 'problem' | 'solution' | 'handoff'
+export type PhaseId = 'start' | 'discover' | 'define' | 'develop' | 'deliver' | 'handoff' | 'engineer' | 'investigate' | 'specify'
+export type LitePhaseId = 'start' | 'problem' | 'solution' | 'handoff' | 'engineer' | 'investigate' | 'specify'
 export type AnyPhaseId = PhaseId | LitePhaseId
 export type FeatureMode = 'comprehensive' | 'lite'
 
@@ -73,6 +73,11 @@ export interface FeatureFiles {
   // Lite mode files
   'problem-output.md'?: boolean
   'solution-output.md'?: boolean
+  // Engineering spec files
+  'eng-context.md'?: boolean
+  'eng-decisions.md'?: boolean
+  'engineering-spec.md'?: boolean
+  'eng-handoff.md'?: boolean
 }
 
 export interface Sprint {
@@ -232,19 +237,76 @@ export const LITE_PHASES: Phase[] = [
   },
 ]
 
-// Helper to get phases for a given mode
-export function getPhasesForMode(mode: FeatureMode): Phase[] {
-  return mode === 'lite' ? LITE_PHASES : PHASES
+// Engineering spec phases (optional — only shown when /engineer has been run)
+export const ENG_PHASES: Phase[] = [
+  {
+    id: 'engineer',
+    name: 'Engineer',
+    description: 'Ingest product handoff and orient technically',
+    command: '/engineer',
+    exitFile: 'eng-context.md',
+    steps: [
+      { number: 1, title: 'Select Feature', description: 'Point to the handoff folder', deliverable: 'Feature selected' },
+      { number: 2, title: 'Ingest Artifacts', description: 'Read all product spec files', deliverable: 'Artifacts ingested' },
+      { number: 3, title: 'Deep Codebase Scan', description: 'Scan affected files and patterns', deliverable: 'Codebase scanned' },
+      { number: 4, title: 'Technical Digest', description: 'Translate PRD to engineering terms', deliverable: 'Digest written' },
+      { number: 5, title: 'Decision Points', description: 'Identify architectural decisions', deliverable: 'Decisions mapped' },
+      { number: 6, title: 'Engineer Context', description: 'Capture familiarity and constraints', deliverable: 'eng-context.md' },
+    ],
+  },
+  {
+    id: 'investigate',
+    name: 'Investigate',
+    description: 'Explore technical decisions through guided investigation',
+    command: '/investigate',
+    exitFile: 'eng-decisions.md',
+    steps: [
+      { number: 1, title: 'Decision Map Review', description: 'Prioritize investigation order', deliverable: 'Order locked' },
+      { number: 2, title: 'Investigate Decisions', description: 'Explore each decision point', deliverable: 'Decisions locked' },
+      { number: 3, title: 'Cross-Cutting Concerns', description: 'Security, errors, observability', deliverable: 'Documented' },
+      { number: 4, title: 'Technical Dependencies', description: 'Map build sequence', deliverable: 'Sequence defined' },
+      { number: 5, title: 'Risk Assessment', description: 'Surface risks and unknowns', deliverable: 'Risks documented' },
+      { number: 6, title: 'Exit Check', description: 'Confirm all decisions locked', deliverable: 'eng-decisions.md' },
+    ],
+  },
+  {
+    id: 'specify',
+    name: 'Specify',
+    description: 'Compile engineering spec and generate implementation handoff',
+    command: '/specify',
+    exitFile: 'engineering-spec.md',
+    steps: [
+      { number: 1, title: 'Generate Spec', description: 'Compile engineering spec', deliverable: 'engineering-spec.md' },
+      { number: 2, title: 'Review Requirements', description: 'Validate technical requirements', deliverable: 'Requirements confirmed' },
+      { number: 3, title: 'Review Risks', description: 'Tag blocking vs non-blocking', deliverable: 'Risks tagged' },
+      { number: 4, title: 'Package Check', description: 'Verify all files exist', deliverable: 'Validated' },
+      { number: 5, title: 'Implementation Handoff', description: 'Generate handoff message', deliverable: 'eng-handoff.md' },
+    ],
+  },
+]
+
+// Check if engineering spec flow is active for a feature (any eng file exists)
+export function hasEngSpec(files: FeatureFiles): boolean {
+  return !!(files['eng-context.md'] || files['eng-decisions.md'] || files['engineering-spec.md'] || files['eng-handoff.md'])
+}
+
+// Helper to get phases for a given mode, optionally including eng phases
+export function getPhasesForMode(mode: FeatureMode, files?: FeatureFiles): Phase[] {
+  const base = mode === 'lite' ? LITE_PHASES : PHASES
+  if (files && hasEngSpec(files)) {
+    return [...base, ...ENG_PHASES]
+  }
+  return base
 }
 
 // Helper to get phase by ID (comprehensive mode)
 export function getPhase(id: PhaseId): Phase | undefined {
-  return PHASES.find(p => p.id === id)
+  return [...PHASES, ...ENG_PHASES].find(p => p.id === id)
 }
 
 // Helper to get phase by ID for any mode
-export function getPhaseForMode(id: AnyPhaseId, mode: FeatureMode): Phase | undefined {
-  const phases = getPhasesForMode(mode)
+export function getPhaseForMode(id: AnyPhaseId, mode: FeatureMode, files?: FeatureFiles): Phase | undefined {
+  const phases = getPhasesForMode(mode, files)
   return phases.find(p => p.id === id)
 }
 
@@ -256,8 +318,8 @@ export function getNextPhase(currentId: PhaseId): Phase | undefined {
 }
 
 // Helper to get next phase for any mode
-export function getNextPhaseForMode(currentId: AnyPhaseId, mode: FeatureMode): Phase | undefined {
-  const phases = getPhasesForMode(mode)
+export function getNextPhaseForMode(currentId: AnyPhaseId, mode: FeatureMode, files?: FeatureFiles): Phase | undefined {
+  const phases = getPhasesForMode(mode, files)
   const currentIndex = phases.findIndex(p => p.id === currentId)
   if (currentIndex === -1 || currentIndex === phases.length - 1) return undefined
   return phases[currentIndex + 1]
