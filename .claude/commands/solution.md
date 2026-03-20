@@ -38,6 +38,12 @@ You are helping design the solution for a lite-mode feature. This combines devel
 
 Write progress to `solution-output.md` as you go. Generate `prd.md` at the end.
 
+## IMPORTANT: Product Focus
+
+This is the **product spec** workflow. Focus on **what** to build and **why** — user flows, wireframes, edge cases, and product trade-offs. Do NOT dive into technical implementation decisions (architecture, APIs, database design, tech stack choices). Those will be handled separately in the **engineering spec** workflow (`/engineer` → `/investigate` → `/specify`) after handoff.
+
+If the user raises technical questions, acknowledge them briefly and note them for later, but steer back to product: "Good question — we'll investigate that technically in the engineering spec phase. For now, let's focus on the solution from the user's perspective."
+
 ## Your Task
 
 Walk through these steps **one at a time**. This is lite mode — focused and efficient.

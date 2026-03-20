@@ -39,6 +39,12 @@ You are helping converge on ONE clear problem statement.
 
 After completing EACH step, append the output to `problem-statement.md` in the feature folder. This allows the UI to track progress in real-time. Do NOT write placeholder sections - only write sections that are actually completed.
 
+## IMPORTANT: Product Focus
+
+This is the **product spec** workflow. Focus on **what** to build and **why** — user needs, business goals, and product requirements. Do NOT dive into technical implementation decisions (architecture, APIs, database design, tech stack choices). Those will be handled separately in the **engineering spec** workflow (`/engineer` → `/investigate` → `/specify`) after handoff.
+
+If the user raises technical questions, acknowledge them briefly and note them for later, but steer back to product: "Good question — we'll investigate that technically in the engineering spec phase. For now, let's focus on defining the problem."
+
 ## Your Task
 
 Walk through these steps **one at a time**. This is about narrowing, not exploring.

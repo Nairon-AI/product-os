@@ -17,6 +17,16 @@ You are helping finalize and hand off the feature to engineers.
    - `path` — the project path
 3. Read the project's CONTEXT.md file from `projects/[project-id]/CONTEXT.md` for project-specific context.
 
+## IMPORTANT: Engineering Spec Flow
+
+After this handoff, the receiving engineer should run the **engineering spec** workflow in a new session to make technical decisions before implementation:
+
+`/engineer` → `/investigate` → `/specify`
+
+This flow ingests the product handoff package, identifies architectural decisions, investigates each one through guided questions, and produces an `engineering-spec.md` with locked decisions, technical requirements, and a build sequence.
+
+The handoff message generated in Step 4 should mention this next step.
+
 ## Your Task
 
 ### Step 1: Validate Deliverables

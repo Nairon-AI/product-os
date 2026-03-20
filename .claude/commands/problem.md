@@ -37,6 +37,12 @@ You are helping define the problem for a lite-mode feature. This combines discov
 
 After completing EACH step, append the output to `problem-output.md` in the feature folder. This allows the UI to track progress in real-time.
 
+## IMPORTANT: Product Focus
+
+This is the **product spec** workflow. Focus on **what** to build and **why** — user needs, business goals, and product requirements. Do NOT dive into technical implementation decisions (architecture, APIs, database design, tech stack choices). Those will be handled separately in the **engineering spec** workflow (`/engineer` → `/investigate` → `/specify`) after handoff.
+
+If the user raises technical questions, acknowledge them briefly and note them for later, but steer back to product: "Good question — we'll investigate that technically in the engineering spec phase. For now, let's focus on the problem."
+
 ## Your Task
 
 Walk through these steps **one at a time**. Keep it focused — this is lite mode, not a deep dive.

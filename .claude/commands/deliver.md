@@ -40,6 +40,12 @@ You are helping finalize and generate all handoff materials.
 
 Write each deliverable to its own file as you complete it. This allows the UI to track progress in real-time.
 
+## IMPORTANT: Product Focus
+
+This is the **product spec** workflow. The PRD, QA checklist, and tickets should focus on **what** to build, **why**, and **how it should behave from the user's perspective**. Do NOT include technical implementation details (architecture choices, database schemas, API designs) in the PRD. Those will be handled separately in the **engineering spec** workflow (`/engineer` → `/investigate` → `/specify`) after handoff.
+
+The PRD should describe behavior and requirements clearly enough that an engineer can later make informed technical decisions in the engineering spec phase.
+
 ## Your Task
 
 Walk through these steps **one at a time**. Generate each deliverable, get approval, then move on.

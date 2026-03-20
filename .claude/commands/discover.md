@@ -39,6 +39,12 @@ You are helping explore the problem space for a feature. This is the DIVERGE pha
 
 After completing EACH step, append the output to `discover-output.md` in the feature folder. This allows the UI to track progress in real-time.
 
+## IMPORTANT: Product Focus
+
+This is the **product spec** workflow. Focus on **what** to build and **why** — user needs, business goals, and product requirements. Do NOT dive into technical implementation decisions (architecture, APIs, database design, tech stack choices). Those will be handled separately in the **engineering spec** workflow (`/engineer` → `/investigate` → `/specify`) after handoff.
+
+If the user raises technical questions, acknowledge them briefly and note them for later, but steer back to product: "Good question — we'll investigate that technically in the engineering spec phase. For now, let's focus on the problem space."
+
 ## Your Task
 
 Walk through these steps **one at a time**. Each step is a conversation. Don't rush. Let the user think.

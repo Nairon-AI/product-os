@@ -46,6 +46,12 @@ After completing EACH step, append the output to `develop-output.md` in the feat
 - **Ask questions before proposing** — don't dump options without understanding preferences first
 - **One question at a time or small batches** — don't overwhelm with 10 questions at once
 
+## IMPORTANT: Product Focus
+
+This is the **product spec** workflow. Focus on **what** to build and **why** — user flows, wireframes, edge cases, and product trade-offs. Do NOT dive into technical implementation decisions (architecture, APIs, database design, tech stack choices). Those will be handled separately in the **engineering spec** workflow (`/engineer` → `/investigate` → `/specify`) after handoff.
+
+If the user raises technical questions, acknowledge them briefly and note them in "Codebase Risks" (Step 7), but steer back to product: "Good question — we'll investigate that technically in the engineering spec phase. For now, let's focus on the user experience."
+
 ## Your Task
 
 Walk through these steps **one at a time**.
